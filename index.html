@@ -87,9 +87,25 @@
             float: left;
             margin-right: 6px;
         }
+
+        button {
+            position: fixed; /* 固定定位 */
+            bottom: 20px; /* 距离底部20px */
+            right: 20px; /* 距离右侧20px */
+            padding: 15px 25px; /* 内边距 */
+            background-color: #007bff; /* 背景颜色 */
+            color: white; /* 文字颜色 */
+            border: none; /* 无边框 */
+            border-radius: 50%; /* 圆形按钮 */
+            cursor: pointer; /* 鼠标悬停时显示手形图标 */
+            z-index: 1000; /* 确保按钮在页面内容之上 */
+            font-size: 16px; /* 字体大小 */
+        }
+
     </style>
 </head>
 <body>
+<button id="button">返回全图</button>
 <div id="container"></div>
 <script type="text/javascript" src="https://webapi.amap.com/maps?v=2.0&key=cda7516d13324cf30129c39b67d942eb"></script>
 <script type="text/javascript">
@@ -98,6 +114,15 @@
         zoom: 6.34,
         center: [110.24241,29.267705],
         resizeEnable: true
+    });
+
+    document.getElementById('button').addEventListener('click', function() {
+        // var mapContainer = document.getElementById('map-container');
+        // mapContainer.style.display = 'block'; // 显示地图容器
+        // initMap(); // 初始化地图
+        map.setCenter([110.24241,29.267705]);
+        map.setZoom(6.34);
+        map.clearInfoWindow();
     });
 
     var Icon1 = new AMap.Marker({
@@ -344,8 +369,10 @@
         offset: new AMap.Pixel(-26, -60)
     });
 
-    IconHL1.on('click',function (){
+    IconHL1.on('click',function (e){
         infoWindow1.open(map, [120.7161020000,32.0143050000])
+        map.setCenter([120.7161020000,32.0203050000]);
+        map.setZoom(13);
     })
 
     var title1 = '沪苏通长江公铁大桥<span style="font-size:11px;color:#F00;">通行于:2020年</span>',
@@ -361,8 +388,10 @@
         offset: new  AMap.Pixel(16,-45)
     })
 
-    IconHL2.on('click',function (){
+    IconHL2.on('click',function (e){
         infoWindow2.open(map, [118.7494490000,32.1106160000])
+        map.setCenter([118.7494490000,32.1126160000]);
+        map.setZoom(15);
     })
 
     var title2 = '南京长江大桥<span style="font-size:11px;color:#F00;">通行于:1968年</span>',
@@ -378,8 +407,10 @@
         offset: new  AMap.Pixel(16,-45)
     })
 
-    IconHL3.on('click',function (){
+    IconHL3.on('click',function (e){
         infoWindow3.open(map, [114.2928740000,30.5472250000])
+        map.setCenter([114.2928740000,30.5492250000]);
+        map.setZoom(15);
     })
 
     var title3 = '武汉长江大桥<span style="font-size:11px;color:#F00;">通行于:1957年</span>',
@@ -394,8 +425,10 @@
         offset: new  AMap.Pixel(16,-45)
     })
 
-    IconHL4.on('click',function (){
+    IconHL4.on('click',function (e){
         infoWindow4.open(map, [111.3929110000,30.5664920000])
+        map.setCenter([111.3929110000,30.5684920000]);
+        map.setZoom(15);
     })
 
     var title4 = '宜昌长江大桥<span style="font-size:11px;color:#F00;">通行于:2001年</span>',
@@ -410,8 +443,10 @@
         offset: new  AMap.Pixel(16,-45)
     })
 
-    IconHL5.on('click',function (){
+    IconHL5.on('click',function (e){
         infoWindow5.open(map, [106.4307840000,29.3507330000])
+        map.setCenter([106.4307840000,29.3527330000]);
+        map.setZoom(15);
     })
 
     var title5 = '新白沙沱长江特大桥<span style="font-size:11px;color:#F00;">建成于:2018年</span>',
@@ -458,7 +493,7 @@
         info.className = "custom-info input-card content-window-card";
 
         //可以通过下面的方式修改自定义窗体的宽高
-        info.style.width = "500px";
+        info.style.width = "100%";
         // 定义顶部标题
         var top = document.createElement("div");
         var titleD = document.createElement("div");
