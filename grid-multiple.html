@@ -1,0 +1,172 @@
+<!--
+	此示例下载自 https://echarts.apache.org/examples/zh/editor.html?c=grid-multiple&code=PTAEAcCcFMBdYJbUgWgQcwHYHsYCgAbOURAW2gBEBDWK0AXlAG09RQByARgE5f2AadgCYADGIHCxnCaJFCZYgMwKRAFhUBWFQDYVAdhUAOFdwWcRZ6f1YdRneYLvLHIzupectH3R4MfjHqY2ALoA3HhklDR0jJHUtAB0pFTgABQAZgCumADGiNiYoKkAzrCQAJSgAN42MLCZkIWlkAkw4ARUOdCp7AIc7OXhAL6DeNjg-YWMNWyIsEQAXNU2s9AAHrBL7ID-kYDzoYAhboBF2oAL8YDziYBwcoDksWcCK6BE6ZscXZiwyOw2Q9az2NgEiOAljM2CRIBh0MgtlQ1ghircQaBobCAArYBCvSHLBFsKiYBDJSZLdJUAjFaB3Iafb73aAQzAAEyBd3p0SWTHYJ1OfXY1y5wWpbAeT3MVJssF-BAARtg1kyEeloDQGtA5diWbQAFq_Uiq7GgACeAEEYcUAJIM9ZbHCYaAfPVfO5sGClXAq6oOvXFKgAN2ghrNyQhQMpCJDoA9iJNqPRb0guvu6IA1mzHVi9aA1sbYeb6ZaOCSCHbsWG2MFRWx1VQtdgdcw7sCEcUABbYADuSzKmWgApBMBJkQ7kC7PbYpSokCeIhHoGgDKW5inqczJpzeaYU9AnDLoZ7DZBsH14Dd7HRxQQufh2L7_3xbs73dTY4nS0XetnjM3Ymny-zFtlzA3LcKRCal0DBD8WARPdBWgR4lm0V8rwwJsng0RCESbaBkKedhFA0ABSIs2AjNhoJpODQAQ6cwXQFCljQ6dxUBDgNAIy8MKw2icLwwjgNLakf2KFMoNTA8jy2HIaFpXB9XYkFpWyFlIH1ABxFIiRJMlpyRYoABl0TdKpQAKDVkGwQcu3DadKw7W94ioCld1TMDz1Xf9OEYw9j0kt50BkuS2AUhlx1U9TQGJUkHz1HT9JtIFjMwUzIHM0FLJIkEbJIOzomncBsDPQkOCYojwxAmwjRNYSQTIzAqHILZOVSQBwOUALrlygCkgvK2b0SS7Drkn_VQxEc-tnPAtz52nWr6o4XlmsAChV2s88SOB6gg-undFfUgMkLPJUMytHZAkCEusRL1abj05DqxOPAgDI64p9VIaUCAAZQQAAvN1DGnEAIDqRBkDQLBXVTTLIPTKGNxh_hQFh-G4Y3RRftAQxuDhvQN20VHeDhzhzHxkRuASVH7AxzdtEUOGhCEDzQCEbQNDhxRRBZjQhBZ1QNFTPVtxBdKarq49eRurqOHum0OsEibN2nCrf1zdzpyel6_g-76ll-1N_qgOAgdQDAcHwPUId5qHEcthHrZp_HOYZ7Qaep0BFA3VQKcMVQEkd0A9Ht1RndUVGmbhjQfax0OeYtkF-eIkI8CGUIgA
+	⚠ 请注意，该图表不是 Apache ECharts 官方示例，而是由用户代码生成的。请注意鉴别其内容。
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.5.0/files/dist/echarts.min.js"></script>
+  
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.5.0/files/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts-gl/2/files/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts-stat/latest/files/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/4.9.0/files/map/js/china.js"></script>
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/4.9.0/files/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.5.0/files/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    // prettier-ignore
+let timeData = [
+  '1999','2000','2001','2002','2003','2004','2005','2006','2007','2008','2009','2010','2011',
+  '2012','2013','2014','2015','2016','2017','2018','2019'
+  ];
+timeData = timeData.map(function (str) {
+  return str.replace('', '');
+});
+option = {
+  title: {
+    text: '西藏的客运量与货运量',
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+      animation: false
+    }
+  },
+  legend: {
+    data: ['客运量', '货运量'],
+    left: 10
+  },
+  toolbox: {
+    feature: {
+      dataZoom: {
+        yAxisIndex: 'none'
+      },
+      restore: {},
+      saveAsImage: {}
+    }
+  },
+  axisPointer: {
+    link: [
+      {
+        xAxisIndex: 'all'
+      }
+    ]
+  },
+  dataZoom: [
+    {
+      show: true,
+      realtime: true,
+      start: 0,
+      end: 100,
+      xAxisIndex: [0, 1]
+    },
+    {
+      type: 'inside',
+      realtime: true,
+      start: 0,
+      end: 100,
+      xAxisIndex: [0, 1]
+    }
+  ],
+  grid: [
+    {
+      left: 60,
+      right: 50,
+      height: '35%'
+    },
+    {
+      left: 60,
+      right: 50,
+      top: '55%',
+      height: '35%'
+    }
+  ],
+  xAxis: [
+    {
+      type: 'category',
+      boundaryGap: false,
+      axisLine: { onZero: true },
+      data: timeData
+    },
+    {
+      gridIndex: 1,
+      type: 'category',
+      boundaryGap: false,
+      axisLine: { onZero: true },
+      data: timeData,
+      position: 'top'
+    }
+  ],
+  yAxis: [
+    {
+      name: '客运量(万人)',
+      type: 'value',
+      max: 400
+    },
+    {
+      gridIndex: 1,
+      name: '货运量(万吨)',
+      type: 'value',
+      inverse: true
+    }
+  ],
+  series: [
+    {
+      name: '客运量',
+      type: 'line',
+      symbolSize: 8,
+      // prettier-ignore
+      data: [
+                0, 0, 0, 0, 0, 0, 0, 38, 89, 70, 68, 99, 110, 109.8, 129, 163, 221, 265, 320, 352, 345
+            ]
+    },
+    {
+      name: '货运量',
+      type: 'line',
+      xAxisIndex: 1,
+      yAxisIndex: 1,
+      symbolSize: 8,
+      // prettier-ignore
+      data: [
+                0, 0, 0, 0, 0, 0, 0, 2, 12, 26, 23, 30, 49, 84.6, 72, 43, 48, 65, 56, 70, 55
+            ]
+    }
+  ]
+};
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
